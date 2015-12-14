@@ -1,0 +1,37 @@
+{
+  "statusCode": 401,
+  "body": "{\"http_status_code\":401,\"http_status_message\":\"Unauthorized\",\"internal_message\":\"The authorization was not correct\"}",
+  "headers": {
+    "www-authenticate": "Klarna",
+    "server": "MochiWeb/1.1 WebMachine/1.10.5 (jokes are better explained)",
+    "render-time": "7",
+    "pragma": "no-cache",
+    "date": "Mon, 14 Dec 2015 09:58:32 GMT",
+    "content-type": "application/vnd.klarna.error-v1+json",
+    "content-length": "116",
+    "cache-control": "max-age=0, no-cache, no-store",
+    "connection": "close"
+  },
+  "request": {
+    "uri": {
+      "protocol": "https:",
+      "slashes": true,
+      "auth": null,
+      "host": "checkout.testdrive.klarna.com",
+      "port": 443,
+      "hostname": "checkout.testdrive.klarna.com",
+      "hash": null,
+      "search": null,
+      "query": null,
+      "pathname": "/checkout/orders/fisk",
+      "path": "/checkout/orders/fisk",
+      "href": "https://checkout.testdrive.klarna.com/checkout/orders/fisk"
+    },
+    "method": "GET",
+    "headers": {
+      "Authorization": "Klarna RTl5ZDfCiITxVSWOgR+8Zz3tO9pu1fh49o7r7E2T1Ug=",
+      "Content-Type": "application/vnd.klarna.checkout.aggregated-order-v2+json",
+      "Accept": "application/vnd.klarna.checkout.aggregated-order-v2+json"
+    }
+  }
+}
