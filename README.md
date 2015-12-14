@@ -148,4 +148,4 @@ Hairtorial ([hairtorial.io](http://hairtorial.io))
 Any help is greatly appreciated!
 
 ## API Documentation ##
-Check out Klarna's API documentation [here](https://developers.klarna.com/en'). 
+Check out Klarna's API documentation [here](https://developers.klarna.com/en).
