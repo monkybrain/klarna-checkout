@@ -68,7 +68,7 @@ httpRequest = {
 # EXPORT: Initialize
 exports.init = (input) ->
 
-# Set merchant ID
+  # Set merchant ID
   if input.eid?
     credentials.eid = input.eid
     config.merchant.id = input.eid
@@ -132,7 +132,7 @@ wrapper = (f) ->
 
   return f
 
-parseResponse = (error, response, body) ->
+parseError = (error, response, body) ->
 
   if error
     return {
@@ -152,23 +152,25 @@ parseResponse = (error, response, body) ->
 # EXPORT: Place order
 exports.place = (cart) ->
 
-# Define function
+  # Unwrapped function
   place = () ->
     new Promise (resolve, reject) ->
-      # Construct data object from config
-      data = config
-      # Add cart
-      data.cart = cart
-      # Post request to Klarna
-      request.post httpRequest.options(data), (error, response, body) ->
-        # Parse response. If error -> return error object, else return null
-        err = parseResponse(error, response, body)
+      # New resource object based on config options
+      resource = config
+      # Add cart to resource
+      resource.cart = cart
+      # Construct HTTP request and send to Klarna
+      request.post httpRequest.options(resource), (error, response, body) ->
+        # Parse response for error.
+        err = parseError(error, response, body)
+        # If error -> reject with error as reason
         if err?
           return reject err
+        # Else, if OK from Klarna -> resolve with order id from Klarna
         else if response.statusCode? and response.statusCode is 201
-          # Extract order url
+          # Get order url
           location = response.headers.location
-          # Extract id from order url and resolve promise with id (string)
+          # Get id from url and resolve promise
           resolve location.slice(location.lastIndexOf('/') + 1)
 
   # Apply wrapper
@@ -176,40 +178,54 @@ exports.place = (cart) ->
 
 # EXPORT: Fetch order
 exports.fetch = (id) ->
+
+  # Unwrapped function
   fetch = () ->
     new Promise (resolve, reject) ->
+      # Construct HTTP request and send to Klarna
       request.get httpRequest.options(null, id), (error, response, body) ->
+        # If OK -> resolve promise with order
         if response.statusCode? and response.statusCode is 200
           resolve JSON.parse(body)
+        # Else -> reject with error
         else
-          err = parseResponse(error, response, JSON.parse(body))
-          reject err
+          reject parseError(error, response, JSON.parse(body))
 
   # Apply wrapper
   wrapper(fetch)()
 
+# EXPORT: Update order
 exports.update = (id, data) ->
+
+  # Unwrapped function
   update = () ->
     new Promise (resolve, reject) ->
+      # Construct HTTP request and send to Klarna
       request.post httpRequest.options(data, id), (error, response, body) ->
+        # If OK -> resolve promise with order
         if response.statusCode? and response.statusCode is 200
-          console.log typeof body
           resolve body
+        # Else -> reject promise with error
         else
-          reject parseResponse(error, response, body)
+          reject parseError(error, response, body)
 
   # Apply wrapper
   wrapper(update)()
 
 # EXPORT: Confirm order (with or without merchant order ids"
 exports.confirm = (id, orderid1, orderid2) ->
+
+  # Unwrapped function
   confirm = () ->
     new Promise (resolve, reject) ->
+      # New status
       data = {status: 'created'}
+      # If merchant reference(s), add to data to send
       if orderid1?
         data.merchant_reference = {orderid1: orderid1}
       if orderid2?
         data.merchant_reference.orderid2 = orderid2
+      # Update order
       exports.update(id, data).then(
         (order) ->
           resolve order
