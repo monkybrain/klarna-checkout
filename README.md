@@ -1,6 +1,6 @@
 # Klarna Checkout for nodejs #
 
-(Work in progress...)
+(Still work in progress...)
 
 Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
 
@@ -15,23 +15,32 @@ If you find this useful or want to contribute, please send me a line.
 
 ## Usage ##
 
-### Get started ###
-CoffeeScript:
+### Initialize ###
 ```
 klarna = require 'klarna-checkout'
 
-# Initalize
 klarna.init
   eid: <EID>
   secret <SHARED SECRET>
-  test: <BOOL>
+  test: <BOOLEAN>
+```
+Pass an object containing
 
-# Configure
+* eid (string)
+  * Merchant ID supplied by Klarna
+* secret (string)
+  * Shared secret supplied by Klarna
+* test (boolean)
+  * ```true``` Test environment (default)
+  * ```false```  Live environment
+
+### Configure ###
+```
 klarna.config
-  purchase_country: <COUNTRY CODE (ISO-3166-alpha2)>    # default: 'SE' (Sweden)
-  purchase_currency: <CURRENCY CODE (ISO-4217)>         # default: 'SEK' (Swedish Krona)
-  locale: <LOCALE (RFC1766)>                            # default: 'sv-se' (Swedish, Sweden)
-  layout: <'desktop' or 'mobile'>						# default: 'desktop'
+  purchase_country: <COUNTRY CODE>			
+  purchase_currency: <CURRENCY CODE>		
+  locale: <LOCALE CODE>											
+  layout: <STRING>
   terms_uri: <URI>
   cancellation_terms_uri: <URI>
   checkout_uri: <URI>
@@ -39,81 +48,77 @@ klarna.config
   push_uri: <URI>
 ``` 
 
+Pass an object containing:
+* purchase_country (string)
+  * e.g. 'SE' for Sweden (default)
+* purchase_currency (string)
+  * e.g. 'SEK'  for Swedish Krona (default)
+* locale (string)
+  * e.g. 'sv-se'  for Swedish/Sweden (default)
+* layout (string)
+  * 'desktop' (default)
+  * 'mobile'
+* terms_uri (string)
+* cancellation_terms_uri (string)
+* checkout_uri (string)
+* confirmation_uri (string)
+* push_uri (string)
+
+See [API Docs: resource](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#resource-properties) for more information
+
+
+
 ### Place order ###
-CoffeeScript:
 ```
 klarna.place cart 
 ```
-JavaScript:
-```
-klarna.place(cart)
-```
-Parameters:
-* cart (object):
+Parameters
+* cart (object)
   * See [API Docs: cart/cart item](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#cart-object-properties)  for instructions on how to format cart properly
 
-Returns:
-* Promise
-  * result: Klarna ID (string)
-  * reason: error (string)
+Returns promise
+  * resolved: Klarna ID (string)
+  * rejected: error (string)
 
 
 ### Fetch order ###
-CoffeeScript:
 ```
 klarna.fetch id
 ```
-JavaScript:
-```
-klarna.fetch(id)
-```
-Parameters:
+Parameters
 * id (string): Klarna ID
 
-Returns:
-* Promise
-  * result: order (object)
-  * reason: error (string)
+Returns promise
+  * resolved: order (object)
+  * rejected: error (string)
 
 ### Confirm order ###
-CoffeeScript:
 ```
-klarna.confirm id, [orderid1, orderid2]
+klarna.confirm id, orderid1, orderid2
 ```
-JavaScript:
-```
-klarna.confirm(id, [orderid1, orderid2])
-```
-Parameters:
-  * Required:
+Parameters
+  * Required
     * id (string): Klarna ID
-  * Optional:
-	* orderid1 (string, optional): Merchant reference #1 (see [API docs: merchant reference](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#merchant_reference-object-properties))
+  * Optional
+	* orderid1 (string): Merchant reference #1 (see [API docs: merchant reference](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#merchant_reference-object-properties))
 	* orderid2 (string): Merchant reference #2 (see [API docs: merchant reference](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#merchant_reference-object-properties))
 
-Returns:
-* Promise
-  * result: order (object)
-  * reason: error (string)
+Returns promise
+  * resolved: order (object)
+  * rejected: error (string)
 
 ### Update order ###
-CoffeeScript:
 ```
 klarna.update id, data
 ```
-JavaScript:
-```
-klarna.fetch(id, data)
-```
-Parameters:
+Parameters
 * id (string)
 * data (object)
   * See [API docs: update](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#update) for valid keys
 
-Returns:
-* Promise
-  * result: updated order (object)
-  * reason: error (string)
+Returns promise
+  * resolved: updated order (object)
+  * rejected: error (string)
 
 ## Example ##
 See the test folder for a (somewhat) working example of a minimal nodejs server serving Klarna Checkout.
