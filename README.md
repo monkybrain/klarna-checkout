@@ -1,8 +1,12 @@
 # Klarna Checkout for nodejs #
 
-Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany. Uses promises to handle async operations.
+(Work in progress...)
 
-Work still in progress...
+Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
+
+Written in CoffeeScript for clarity, as is the documentation below. JavaScript users, sprinkle curly braces accordingly...
+
+Uses promises to handle async operations.
 
 If you find this useful or want to contribute, please send me a line.
 
@@ -20,7 +24,7 @@ klarna = require 'klarna-checkout'
 klarna.init
   eid: <EID>
   secret <SHARED SECRET>
-  test: true											# default: true
+  test: <BOOL>
 
 # Configure
 klarna.config
@@ -34,30 +38,6 @@ klarna.config
   confirmation_uri: <URI>
   push_uri: <URI>
 ``` 
-JavaScript:
-```
-var klarna = require('klarna-checkout')
-
-// Initialize
-klarna.init({
-  eid: <EID>,
-  secret <SHARED SECRET>,
-  test: true											// default: true
-});
-
-// Configure
-klarna.config({
-  purchase_country: <COUNTRY CODE (ISO-3166-alpha2)>,   // default: 'SE' (Sweden)
-  purchase_currency: <CURRENCY CODE (ISO-4217)>,        // default: 'SEK' (Swedish Krona)
-  locale: <LOCALE (RFC1766)>,                           // default: 'sv-se' (Swedish, Sweden)
-  layout: <'desktop' or 'mobile'>						// default: 'desktop'
-  terms_uri: <URI>,
-  cancellation_terms_uri: <URI>,
-  checkout_uri: <URI>,
-  confirmation_uri: <URI>,
-  push_uri: <URI>
-});
-```
 
 ### Place order ###
 CoffeeScript:
