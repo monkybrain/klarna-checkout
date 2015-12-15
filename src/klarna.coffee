@@ -2,7 +2,6 @@
 crypto = require 'crypto'
 request = require 'request'
 Promise = require 'promise'
-fs = require 'fs'
 
 # Flags
 flags = {
