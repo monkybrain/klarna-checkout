@@ -48,7 +48,7 @@ app.post '/order', (req, res) ->
 
 # GET: Confirm order
 app.get '/confirmation', (req, res) ->
-  On confirmation, get order id and log to console
+  # On confirmation, get order id and log to console
   id = req.query.klarna_order_id
   console.log "Confirming order"
   # 1) Confirm order with Klarna

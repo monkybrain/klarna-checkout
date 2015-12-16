@@ -46,7 +46,6 @@
 
   app.get('/confirmation', function(req, res) {
     var id;
-    On(confirmation, get(order(id && log(to(console)))));
     id = req.query.klarna_order_id;
     console.log("Confirming order");
     return klarna.confirm(id, '1000').then(function(order) {
