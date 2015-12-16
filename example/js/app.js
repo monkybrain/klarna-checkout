@@ -31,8 +31,8 @@
   app.use(express["static"]('public'));
 
   app.post('/order', function(req, res) {
+    console.log("Placing order");
     return klarna.place(req.body).then(function(id) {
-      console.log("Placing order");
       return klarna.fetch(id);
     }, function(error) {
       return res.status(500).send(error);
@@ -40,12 +40,13 @@
       console.log("Snippet received");
       return res.send(order.gui.snippet);
     }, function(error) {
-      return res.send(error);
+      return res.status(500).send(error);
     });
   });
 
   app.get('/confirmation', function(req, res) {
     var id;
+    On(confirmation, get(order(id && log(to(console)))));
     id = req.query.klarna_order_id;
     console.log("Confirming order");
     return klarna.confirm(id, '1000').then(function(order) {
@@ -55,7 +56,7 @@
       html += '<div style="font-family: Helvetica, sans-serif; text-align: center"><a href="/order/' + id + '">View order</a>';
       return res.send(html);
     }, function(error) {
-      return res.send(error);
+      return res.status(500).send(error);
     });
   });
 
@@ -82,7 +83,7 @@
       }
       return res.send(html);
     }, function(error) {
-      return res.send(error);
+      return res.status(500).send(error);
     });
   });
 
