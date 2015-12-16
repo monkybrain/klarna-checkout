@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Klarna Checkout Example</title>
+
+    <!-- STYLESHEETS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+    <!-- SCRIPTS -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="js/example.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <table class="table">
+                <div style="text-align: center">
+                    <img src="img/spam.png" style="width: 100px;">
+                    <h2 style="margin-top: 0px;">spam-shop.com</h2>
+                    <br>
+                </div>
+
+                <!-- Table head -->
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price (SEK)</th>
+                    <th>VAT</th>
+                    <th>Total (SEK)</th>
+                </tr>
+                </thead>
+
+                <!-- Table body -->
+                <tbody>
+                <tr>
+                    <th>Tin of spam</th>
+                    <th>2</th>
+                    <th>34.00</th>
+                    <th>25%</th>
+                    <th>68.00</th>
+                </tr>
+                </tbody>
+            </table>
+            <div style="text-align: center">
+                <button id="button-order">
+                    Pay with Klarna
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div id="klarna" class="col-lg-6"></div>
+        <div class="col-lg-6"></div>
+    </div>
+</div>
+</body>
+</html>

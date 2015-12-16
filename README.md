@@ -1,6 +1,6 @@
 # Klarna Checkout for nodejs #
 
-(Work still in progress...)
+(Note! Work still in progress)
 
 Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
 
@@ -22,7 +22,7 @@ klarna = require 'klarna-checkout'
 klarna.init
   eid: <EID>
   secret <SHARED SECRET>
-  test: <BOOLEAN>
+  live: <BOOLEAN>
 ```
 Pass an object containing
 
@@ -30,9 +30,9 @@ Pass an object containing
   * Merchant ID supplied by Klarna
 * secret (string)
   * Shared secret supplied by Klarna
-* test (boolean)
-  * `true` Test environment (default)
-  * `false`  Live environment
+* live (boolean)
+  * `true` Live environment
+  * `false`  Test environment (default)
 
 ### Configure ###
 ```
@@ -77,7 +77,7 @@ Parameters
   * See [API Docs: cart/cart item](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#cart-object-properties)  for instructions on how to format cart properly
 
 Returns promise
-  * resolved: Klarna ID (string)
+  * resolved: Klarna Order ID (string)
   * rejected: error (string)
 
 
@@ -86,7 +86,7 @@ Returns promise
 klarna.fetch id
 ```
 Parameters
-* id (string): Klarna ID
+* id (string): Klarna Order ID
 
 Returns promise
   * resolved: order (object)
@@ -98,7 +98,7 @@ klarna.confirm id, orderid1, orderid2
 ```
 Parameters
   * Required
-    * id (string): Klarna ID
+    * id (string): Klarna Order ID
   * Optional
 	* orderid1 (string): Merchant reference #1 (see [API docs: merchant reference](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#merchant_reference-object-properties))
 	* orderid2 (string): Merchant reference #2 (see [API docs: merchant reference](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#merchant_reference-object-properties))
@@ -120,17 +120,25 @@ Returns promise
   * resolved: updated order (object)
   * rejected: error (string)
 
+---
+
 ## Example ##
-See the test folder for a (somewhat) working example of a minimal nodejs server serving Klarna Checkout.
+In [`example/`](./example/) there is an example of a minimal nodejs server serving Klarna Checkout.
+
+---
 
 ## Used by ##
 Hairtorial ([hairtorial.io](http://hairtorial.io))
+
+---
 
 ## To be implemented ##
 * Recurring orders
 * Custom options
 
 Any help is greatly appreciated!
+
+---
 
 ## API Documentation ##
 Check out Klarna's API documentation [here](https://developers.klarna.com/en).
