@@ -27,5 +27,5 @@ Merchant ids and shared secrets are supplied by Klarna upon request.
 `npm start`
 
 ### View example ###
-Open `localhost:3000/` in browser
+Open `localhost:3000` in browser
 
