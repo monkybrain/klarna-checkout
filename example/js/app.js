@@ -9,7 +9,7 @@
   bodyParser = require("body-parser");
 
 
-  /* ASK KLARNA FOR TEST CREDENTIALS! */
+  /* ENTER YOUR MERCHANT ID AND SHARED SECRET HERE */
 
   klarna.init({
     eid: '',

@@ -3,11 +3,12 @@ express = require "express"
 klarna = require "./../../src/js/klarna"
 bodyParser = require "body-parser"
 
-### ASK KLARNA FOR TEST CREDENTIALS! ###
+### ENTER YOUR MERCHANT ID AND SHARED SECRET HERE ###
 klarna.init
   eid: ''
   secret: ''
 
+# Set urls (while using default country, language and currency settings)
 klarna.config
   terms_uri: 'http://www.example.com'
   cancellation_terms_uri: 'http://www.example.com'
@@ -15,8 +16,11 @@ klarna.config
   confirmation_uri: 'http://localhost:3000/confirmation?klarna_order_id={checkout.order.id}'
   push_uri: 'http://www.example.com'
 
+# Create express app
 app = express()
+# Add body parser middleware
 app.use bodyParser.json()
+# Serve public folder on '/'
 app.use express.static 'public'
 
 # POST: Place order
