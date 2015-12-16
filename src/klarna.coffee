@@ -15,9 +15,9 @@ credentials =
 
 # Configuration (default: Sweden, SEK, Swedish)
 config =
-  purchase_country: 'SE',
-  purchase_currency: 'SEK',
-  locale: 'sv-se',
+  purchase_country: 'SE'
+  purchase_currency: 'SEK'
+  locale: 'sv-se'
   merchant:
     id: null
     terms_uri: null
