@@ -12,8 +12,7 @@
 
   klarna.init({
     eid: '',
-    secret: '',
-    live: false
+    secret: ''
   });
 
   klarna.config({

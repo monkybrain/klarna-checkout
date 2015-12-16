@@ -9,7 +9,6 @@ klarna.init
 # ASK KLARNA FOR TEST CREDENTIALS!
   eid: ''
   secret: ''
-  live: false
 
 klarna.config
   terms_uri: 'http://www.example.com'
