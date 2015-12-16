@@ -81,6 +81,7 @@ wrapper = (f) ->
           reject "'%s' not set", key
       break
 
+  # If no problems -> return original function
   return f
 
 parseError = (error, response, body) ->
