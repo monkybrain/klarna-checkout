@@ -10,6 +10,8 @@ Uses promises to handle async operations.
 
 If you find this useful or want to contribute, please send me a line.
 
+(npm: [www.npmjs.com/package/klarna-checkout](https://www.npmjs.com/package/klarna-checkout))
+
 ## Install ##
 `npm install klarna-checkout`
 
