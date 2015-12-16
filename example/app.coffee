@@ -2,7 +2,6 @@
 express = require "express"
 klarna = require "./../../src/js/klarna"
 bodyParser = require "body-parser"
-jsonMarkup = require "json-markup"
 
 ### ASK KLARNA FOR TEST CREDENTIALS! ###
 klarna.init
