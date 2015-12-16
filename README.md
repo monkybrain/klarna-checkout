@@ -1,5 +1,7 @@
 # Klarna Checkout for nodejs #
 
+[www.npmjs.com/package/klarna-checkout](https://www.npmjs.com/package/klarna-checkout)
+
 (Note! Work still in progress)
 
 Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
@@ -10,14 +12,14 @@ Uses promises to handle async operations.
 
 If you find this useful or want to contribute, please send me a line.
 
-(npm: [www.npmjs.com/package/klarna-checkout](https://www.npmjs.com/package/klarna-checkout))
 
-## Install ##
+
+### Install ###
 `npm install klarna-checkout`
 
-## Usage ##
+### Usage ###
 
-### Initialize ###
+#### Initialize ####
 ```
 klarna = require 'klarna-checkout'
 
@@ -36,7 +38,7 @@ Pass an object containing
   * `true` Live environment
   * `false`  Test environment (default)
 
-### Configure ###
+#### Configure ####
 ```
 klarna.config
   purchase_country: <COUNTRY CODE>			
@@ -70,7 +72,7 @@ See [API Docs: resource](https://developers.klarna.com/en/se+php/kco-v2/checkout
 
 
 
-### Place order ###
+#### Place order ####
 ```
 klarna.place cart 
 ```
@@ -83,7 +85,7 @@ Returns promise
   * rejected: error (string)
 
 
-### Fetch order ###
+#### Fetch order ####
 ```
 klarna.fetch id
 ```
@@ -94,7 +96,7 @@ Returns promise
   * resolved: order (object)
   * rejected: error (string)
 
-### Confirm order ###
+#### Confirm order ####
 ```
 klarna.confirm id, orderid1, orderid2
 ```
@@ -109,7 +111,7 @@ Returns promise
   * resolved: order (object)
   * rejected: error (string)
 
-### Update order ###
+#### Update order ####
 ```
 klarna.update id, data
 ```
@@ -124,17 +126,17 @@ Returns promise
 
 ---
 
-## Example ##
-In [`example/`](./example/) there is an example of a minimal nodejs server serving Klarna Checkout.
+### Example ###
+There is an example of a minimal nodejs server serving Klarna Checkout in the directory [`example/`](./example/)
 
 ---
 
-## Used by ##
+### Used by ###
 Hairtorial ([hairtorial.io](http://hairtorial.io))
 
 ---
 
-## To be implemented ##
+### To be implemented ###
 * Recurring orders
 * Custom options
 
@@ -142,5 +144,5 @@ Any help is greatly appreciated!
 
 ---
 
-## API Documentation ##
+### API Documentation ###
 Check out Klarna's API documentation [here](https://developers.klarna.com/en).
