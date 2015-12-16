@@ -4,7 +4,7 @@
 
 Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
 
-Written in CoffeeScript for clarity, as is the documentation below. JavaScript users, sprinkle curly braces accordingly...
+Written in CoffeeScript for clarity, as are the examples below. JavaScript users, sprinkle curly braces accordingly...
 
 Uses promises to handle async operations.
 
