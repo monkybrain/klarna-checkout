@@ -1,6 +1,6 @@
 {
   "name": "klarna-checkout",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Library for integrating Klarna Checkout in a nodejs environment",
   "main": "src/js/klarna.js",
   "scripts": {
