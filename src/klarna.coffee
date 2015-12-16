@@ -223,10 +223,10 @@ publicMethods =
     f = () ->
       new Promise (resolve, reject) ->
         # New status
-        data = {status: 'created'}
+        data = status: 'created'
         # If merchant reference(s), add to data to send
         if orderid1?
-          data.merchant_reference = {orderid1: orderid1}
+          data.merchant_reference = orderid1: orderid1
         if orderid2?
           data.merchant_reference.orderid2 = orderid2
         # Update order
