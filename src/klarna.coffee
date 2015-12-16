@@ -4,19 +4,17 @@ request = require 'request'
 Promise = require 'promise'
 
 # Flags
-flags = {
+flags =
   live: true,
   initalized: false
-}
 
 # Credentials
-credentials = {
+credentials =
   eid: null
   secret: null
-}
 
 # Configuration (default: Sweden, SEK, Swedish)
-config = {
+config =
   purchase_country: 'SE',
   purchase_currency: 'SEK',
   locale: 'sv-se',
@@ -29,17 +27,21 @@ config = {
     push_uri: null
   gui:
     layout: 'desktop'
-}
 
-# Klarna stuff
-klarna = {
+# Klarna REST API constants
+klarna =
   url:
     test: 'https://checkout.testdrive.klarna.com/checkout/orders'
     live: 'https://checkout.klarna.com/checkout/orders'
-}
+  headers:
+    contentType: 'application/vnd.klarna.checkout.aggregated-order-v2+json'
+    accept: 'application/vnd.klarna.checkout.aggregated-order-v2+json'
+
+
+### PRIVATE ###
 
 # Construct HTTP request according to Klarna specifications
-httpRequest = {
+httpRequest =
 
   # Set HTTP request headers
   headers: (payload) ->
@@ -49,20 +51,19 @@ httpRequest = {
     hash = crypto.createHash('sha256').update(biscuit).digest('base64')
 
     # Return headers
+    'Accept': klarna.headers.accept
     'Authorization': 'Klarna ' + hash,
-    'Content-Type': 'application/vnd.klarna.checkout.aggregated-order-v2+json',
-    'Accept': 'application/vnd.klarna.checkout.aggregated-order-v2+json'
+    'Content-Type': klarna.headers.contentType
 
   # Set HTTP request options
   options: (data, id) ->
-    # Test or live environment?
+    # Set base url depending on live or test environment
     url = if flags.live then klarna.url.live else klarna.url.test
     # Return HTTP request options
     url: if id? then url + '/' + id else url
     headers: this.headers(data),
     body: data
     json: if data? then true else false
-}
 
 # Wrapper for all exported (order related) functions
 wrapper = (f) ->
@@ -84,6 +85,7 @@ wrapper = (f) ->
   # If no problems -> return original function
   return f
 
+# Parse HTTP response for error
 parseError = (error, response, body) ->
 
   # If HTTP request error
@@ -103,7 +105,7 @@ parseError = (error, response, body) ->
     message: body.internal_message
     }
 
-# EXPORTS
+### PUBLIC ###
 publicMethods =
 
   # Initialize

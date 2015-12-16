@@ -39,8 +39,15 @@
     url: {
       test: 'https://checkout.testdrive.klarna.com/checkout/orders',
       live: 'https://checkout.klarna.com/checkout/orders'
+    },
+    headers: {
+      contentType: 'application/vnd.klarna.checkout.aggregated-order-v2+json',
+      accept: 'application/vnd.klarna.checkout.aggregated-order-v2+json'
     }
   };
+
+
+  /* PRIVATE */
 
   httpRequest = {
     headers: function(payload) {
@@ -48,9 +55,9 @@
       biscuit = payload != null ? JSON.stringify(payload) + credentials.secret : credentials.secret;
       hash = crypto.createHash('sha256').update(biscuit).digest('base64');
       return {
+        'Accept': klarna.headers.accept,
         'Authorization': 'Klarna ' + hash,
-        'Content-Type': 'application/vnd.klarna.checkout.aggregated-order-v2+json',
-        'Accept': 'application/vnd.klarna.checkout.aggregated-order-v2+json'
+        'Content-Type': klarna.headers.contentType
       };
     },
     options: function(data, id) {
@@ -105,6 +112,9 @@
       };
     }
   };
+
+
+  /* PUBLIC */
 
   publicMethods = {
     init: function(input) {
