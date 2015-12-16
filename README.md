@@ -1,6 +1,6 @@
 # Klarna Checkout for nodejs #
 
-(Still work in progress...)
+(Work still in progress...)
 
 Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
 
@@ -31,8 +31,8 @@ Pass an object containing
 * secret (string)
   * Shared secret supplied by Klarna
 * test (boolean)
-  * ```true``` Test environment (default)
-  * ```false```  Live environment
+  * `true` Test environment (default)
+  * `false`  Live environment
 
 ### Configure ###
 ```
@@ -48,16 +48,16 @@ klarna.config
   push_uri: <URI>
 ``` 
 
-Pass an object containing:
+Pass an object containing
 * purchase_country (string)
-  * e.g. 'SE' for Sweden (default)
+  * e.g. `'SE'` for Sweden (default)
 * purchase_currency (string)
-  * e.g. 'SEK'  for Swedish Krona (default)
+  * e.g. `'SEK'`  for Swedish Krona (default)
 * locale (string)
-  * e.g. 'sv-se'  for Swedish/Sweden (default)
+  * e.g. `'sv-se'` for Swedish/Sweden (default)
 * layout (string)
-  * 'desktop' (default)
-  * 'mobile'
+  * `'desktop'` (default)
+  * `'mobile'`
 * terms_uri (string)
 * cancellation_terms_uri (string)
 * checkout_uri (string)
