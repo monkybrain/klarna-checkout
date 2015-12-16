@@ -110,6 +110,7 @@
     init: function(input) {
       if (input == null) {
         console.error("Missing init values");
+        return;
       }
       if (input.eid != null) {
         credentials.eid = input.eid;

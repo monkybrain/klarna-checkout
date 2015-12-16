@@ -107,6 +107,7 @@ publicMethods =
 
     if not input?
       console.error "Missing init values"
+      return
 
     # Set merchant ID
     if input.eid?
