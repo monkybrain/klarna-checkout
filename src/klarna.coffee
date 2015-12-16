@@ -171,10 +171,10 @@ publicMethods =
         request.post httpRequest.options(resource), (error, response, body) ->
           # Parse response for error.
           err = parseError(error, response, body)
-          # If error -> reject with error as reason
+          # If error -> reject with error
           if err?
             return reject err
-          # Else, if OK from Klarna -> resolve with order id from Klarna
+          # Else, if OK from Klarna -> resolve with order id
           else if response.statusCode? and response.statusCode is 201
             # Get order url
             location = response.headers.location
