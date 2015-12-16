@@ -105,6 +105,9 @@ publicMethods =
   # EXPORT: Initialize
   init: (input) ->
 
+    if not input?
+      console.error "Missing init values"
+
     # Set merchant ID
     if input.eid?
       credentials.eid = input.eid

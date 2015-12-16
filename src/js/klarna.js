@@ -108,6 +108,9 @@
 
   publicMethods = {
     init: function(input) {
+      if (input == null) {
+        console.error("Missing init values");
+      }
       if (input.eid != null) {
         credentials.eid = input.eid;
         config.merchant.id = input.eid;
