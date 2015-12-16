@@ -10,6 +10,9 @@
 
   jsonMarkup = require("json-markup");
 
+
+  /* ASK KLARNA FOR TEST CREDENTIALS! */
+
   klarna.init({
     eid: '',
     secret: ''

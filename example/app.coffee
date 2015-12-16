@@ -4,9 +4,8 @@ klarna = require "./../../src/js/klarna"
 bodyParser = require "body-parser"
 jsonMarkup = require "json-markup"
 
-# Klarna setup
+### ASK KLARNA FOR TEST CREDENTIALS! ###
 klarna.init
-# ASK KLARNA FOR TEST CREDENTIALS!
   eid: ''
   secret: ''
 
