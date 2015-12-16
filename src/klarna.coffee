@@ -67,7 +67,7 @@ httpRequest = {
 # Wrapper for all exported (order related) functions
 wrapper = (f) ->
 
-# Module initalized?
+  # Module initalized?
   if not flags.initalized
     return () ->
       new Promise (resolve, reject) ->
@@ -85,6 +85,7 @@ wrapper = (f) ->
 
 parseError = (error, response, body) ->
 
+  # If HTTP request error
   if error?
     return {
     type: 'Request error'
@@ -92,6 +93,7 @@ parseError = (error, response, body) ->
     message: error.message
     }
 
+  # If Klarna error
   else if body
     body = if typeof body is 'string' then JSON.parse(body) else body
     return {
@@ -102,7 +104,8 @@ parseError = (error, response, body) ->
 
 # EXPORTS
 publicMethods =
-  # EXPORT: Initialize
+
+  # Initialize
   init: (input) ->
 
     if not input?
@@ -125,7 +128,7 @@ publicMethods =
     # If success -> set flag 'initialized'
     if input.eid? and input.secret? then flags.initalized = true
 
-  # EXPORT: Set config
+  # Set config
   config: (input) ->
 
     # Country, language and currency
@@ -153,6 +156,7 @@ publicMethods =
     if input.push_uri?
       config.merchant.push_uri = input.push_uri
 
+  # Place order
   place: (cart) ->
     f = () ->
       new Promise (resolve, reject) ->
@@ -211,7 +215,7 @@ publicMethods =
     # Apply wrapper
     wrapper(f)()
 
-  # EXPORT: Confirm order (with or without merchant order ids"
+  # Confirm order (with or without merchant order ids)
   confirm: (id, orderid1, orderid2) ->
     f = () ->
       new Promise (resolve, reject) ->
@@ -233,4 +237,5 @@ publicMethods =
     # Apply wrapper
     wrapper(f)()
 
+# Export module
 module.exports = publicMethods
