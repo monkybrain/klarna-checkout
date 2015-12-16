@@ -14,7 +14,7 @@ klarna.init
 ```
 and transpile into js/app.js.
 
-If you do not like CoffeeScript or don't have a transpiler installed, you can edit js/app.js directly
+If you don't like CoffeeScript or don't have a transpiler installed, you can edit js/app.js directly
 ```
 klarna.init({
 	eid: <MERCHANT ID>
