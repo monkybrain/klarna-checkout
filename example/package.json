@@ -5,12 +5,15 @@
   "main": "js/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node js/app"
+    "start": "node src/app.js",
+    "setup": "node src/setup.js"
   },
-  "author": "",
+  "author": "Philip Prophet",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.1",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "prompt": "^0.2.14",
+    "klarna-checkout": "*"
   }
 }

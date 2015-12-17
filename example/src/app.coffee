@@ -1,12 +1,27 @@
-# Imports
+# Import modules
 express = require "express"
-klarna = require "./../../src/js/klarna"
+klarna = require "klarna-checkout"
 bodyParser = require "body-parser"
+fs = require "fs"
 
-### ENTER YOUR MERCHANT ID AND SHARED SECRET HERE ###
+# Read config.json
+try
+  cfg = fs.readFileSync 'credentials.json', 'utf-8'
+catch err
+  console.error "ERROR! credentials.json not found. Please run 'npm run-script setup'."
+  return
+
+# Parse config.json
+try
+  cfg = JSON.parse cfg
+catch err
+  console.error "ERROR! Invalid credentials.json file. Please run 'npm run-script setup'."
+  return
+
+# Initialize module with credentials stored in credentials.json
 klarna.init
-  eid: ''
-  secret: ''
+  eid: cfg.eid
+  secret: cfg.secret
 
 # Set urls (while using default country, language and currency settings)
 klarna.config
@@ -93,7 +108,6 @@ app.get '/order/:id', (req, res) ->
 
 # Run local server on port 3000
 server = app.listen 3000, 'localhost', () ->
-  host = server.address().address
   port = server.address().port
   console.log "Klarna Checkout example server is up and running!"
-  console.log "Visit http://#{host}:#{port} in browser to try it."
+  console.log "Open http://localhost:#{port} in browser to try it."
