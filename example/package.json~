@@ -1,0 +1,19 @@
+{
+  "name": "klarna-checkout-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "setup": "node src/setup.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "prompt": "^0.2.14",
+    "klarna-checkout": "*"
+  }
+}
