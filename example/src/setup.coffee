@@ -21,6 +21,7 @@ schemas =
 # Config prompt
 prompt.message = ''
 prompt.delimiter = ''
+
 # Start prompt
 prompt.start()
 

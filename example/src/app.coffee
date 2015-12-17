@@ -1,21 +1,26 @@
 # Import modules
-express = require "express"
-klarna = require "klarna-checkout"
-bodyParser = require "body-parser"
-fs = require "fs"
+try
+  express = require "express"
+  klarna = require "klarna-checkout"
+  bodyParser = require "body-parser"
+  colors = require "colors"
+  fs = require "fs"
+catch err
+  console.log "ERROR! Required modules not installed. Please run 'npm install'\n"
+  return
 
 # Read config.json
 try
   cfg = fs.readFileSync 'credentials.json', 'utf-8'
 catch err
-  console.error "ERROR! credentials.json not found. Please run 'npm run-script setup'."
+  console.error "ERROR! 'credentials.json' not found. Please run 'npm run-script setup'.\n".red
   return
 
 # Parse config.json
 try
   cfg = JSON.parse cfg
 catch err
-  console.error "ERROR! Invalid credentials.json file. Please run 'npm run-script setup'."
+  console.error "ERROR! Invalid 'credentials.json' file. Please run 'npm run-script setup'.\n".red
   return
 
 # Initialize module with credentials stored in credentials.json

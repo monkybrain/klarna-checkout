@@ -17,9 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "colors": "^1.1.2",
     "express": "^4.13.3",
-    "prompt": "^0.2.14",
-    "klarna-checkout": "*"
+    "klarna-checkout": "*",
+    "prompt": "^0.2.14"
   },
   "repository": {
     "type": "git",
