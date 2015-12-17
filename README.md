@@ -2,7 +2,7 @@
 
 Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
 
-Written in CoffeeScript for clarity, as are the examples below. JavaScript users, sprinkle curly braces accordingly...
+Written in CoffeeScript for clarity, as are the examples below. JavaScript users, sprinkle semicolons and curly braces accordingly...
 
 Uses promises to handle async operations.
 
@@ -31,6 +31,7 @@ Pass an object containing
 * live (boolean)
   * `true` Live environment
   * `false`  Test environment (default)
+
 
 #### Configure ####
 ```
@@ -63,7 +64,6 @@ Pass an object containing
 * push_uri (string)
 
 See [API Docs: resource](https://developers.klarna.com/en/se+php/kco-v2/checkout-api#resource-properties) for more information
-
 
 
 #### Place order ####
