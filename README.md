@@ -132,7 +132,7 @@ Hairtorial ([hairtorial.io](http://hairtorial.io))
 
 ### To be implemented ###
 * Recurring orders
-* Custom options
+* Customization options (colors etc)
 
 Any help is greatly appreciated!
 
