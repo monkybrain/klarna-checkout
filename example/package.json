@@ -1,6 +1,6 @@
 {
   "name": "klarna-checkout-example",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "js/app.js",
   "scripts": {
@@ -8,6 +8,11 @@
     "start": "node src/app.js",
     "setup": "node src/setup.js"
   },
+  "keywords": [
+    "nodejs",
+    "klarna",
+    "checkout"
+  ],
   "author": "Philip Prophet",
   "license": "ISC",
   "dependencies": {
@@ -15,5 +20,9 @@
     "express": "^4.13.3",
     "prompt": "^0.2.14",
     "klarna-checkout": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bokonon82/klarna-checkout.git"
   }
 }

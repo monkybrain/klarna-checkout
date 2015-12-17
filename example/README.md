@@ -1,5 +1,7 @@
 # Klarna Checkout example server #
 
+Does what is says on the tin...
+
 ### Install dependencies ###
 `npm install`
 
