@@ -5,7 +5,7 @@ Promise = require 'promise'
 
 # Flags
 flags =
-  live: true,
+  live: false,
   initalized: false
 
 # Credentials
@@ -168,6 +168,7 @@ publicMethods =
         # Add cart to resource
         resource.cart = cart
         # Construct HTTP request and send to Klarna
+
         request.post httpRequest.options(resource), (error, response, body) ->
           # Parse response for error.
           err = parseError(error, response, body)
