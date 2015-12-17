@@ -1,9 +1,5 @@
 # Klarna Checkout for nodejs #
 
-[www.npmjs.com/package/klarna-checkout](https://www.npmjs.com/package/klarna-checkout)
-
-(Note! Work still in progress)
-
 Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
 
 Written in CoffeeScript for clarity, as are the examples below. JavaScript users, sprinkle curly braces accordingly...
@@ -11,8 +7,6 @@ Written in CoffeeScript for clarity, as are the examples below. JavaScript users
 Uses promises to handle async operations.
 
 If you find this useful or want to contribute, please send me a line.
-
-
 
 ### Install ###
 `npm install klarna-checkout`
