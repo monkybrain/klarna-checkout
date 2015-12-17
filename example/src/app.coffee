@@ -1,7 +1,6 @@
 # Import modules
 express = require "express"
-# klarna = require "klarna-checkout"
-klarna = require "./../../src/klarna"
+klarna = require "klarna-checkout"
 bodyParser = require "body-parser"
 fs = require "fs"
 
