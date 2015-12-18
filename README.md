@@ -18,8 +18,8 @@ If you find this useful or want to contribute, please send me a line.
 klarna = require 'klarna-checkout'
 
 klarna.init
-  eid: <EID>
-  secret <SHARED SECRET>
+  eid: <STRING>
+  secret: <STRING>
   live: <BOOLEAN>
 ```
 Pass an object containing
@@ -36,15 +36,15 @@ Pass an object containing
 #### Configure ####
 ```
 klarna.config
-  purchase_country: <COUNTRY CODE>			
-  purchase_currency: <CURRENCY CODE>		
-  locale: <LOCALE CODE>											
+  purchase_country: <STRING>			
+  purchase_currency: <STRING>		
+  locale: <STRING>											
   layout: <STRING>
-  terms_uri: <URI>
-  cancellation_terms_uri: <URI>
-  checkout_uri: <URI>
-  confirmation_uri: <URI>
-  push_uri: <URI>
+  terms_uri: <STRING>
+  cancellation_terms_uri: <STRING>
+  checkout_uri: <STRING>
+  confirmation_uri: <STRING>
+  push_uri: <STRING>
 ``` 
 
 Pass an object containing

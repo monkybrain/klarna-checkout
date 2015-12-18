@@ -22,11 +22,11 @@ schemas =
 prompt.message = ''
 prompt.delimiter = ''
 
-# Start prompt
-prompt.start()
-
 # Write welcome message to console
 console.log "\nSetting up Klarna Checkout example server".green
+
+# Start prompt
+prompt.start()
 
 # Main function
 run = () ->
@@ -36,9 +36,9 @@ run = () ->
       eid: result.eid
       secret: result.secret
     # Display entered input
-    console.log '\nYou entered:'.green
-    console.log '\n  eid: ' + result.eid
-    console.log '  secret: ' + result.secret
+    console.log "\nYou entered:".green
+    console.log "\n  eid: #{result.eid}".white
+    console.log "  secret: #{result.secret}".white
     # Prompt for confirmation
     prompt.get schemas.confirmation, (err, result) ->
       # If no -> rinse and repeat

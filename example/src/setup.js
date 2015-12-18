@@ -34,9 +34,9 @@
 
   prompt.delimiter = '';
 
-  prompt.start();
-
   console.log("\nSetting up Klarna Checkout example server".green);
+
+  prompt.start();
 
   run = function() {
     return prompt.get(schemas.input, function(err, result) {
@@ -45,9 +45,9 @@
         eid: result.eid,
         secret: result.secret
       };
-      console.log('\nYou entered:'.green);
-      console.log('\n  eid: ' + result.eid);
-      console.log('  secret: ' + result.secret);
+      console.log("\nYou entered:".green);
+      console.log(("\n  eid: " + result.eid).white);
+      console.log(("  secret: " + result.secret).white);
       return prompt.get(schemas.confirmation, function(err, result) {
         if (result.confirmation === 'no') {
           return run();
