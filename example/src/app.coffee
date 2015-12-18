@@ -43,45 +43,76 @@ app.use bodyParser.json()
 # Serve public folder on '/'
 app.use express.static 'public'
 
-# POST: Place order
+# Format order data as html (not very elegant, I know...)
+order2html = (order) ->
+  html = ''
+  # Parse 1st order keys
+  for key, value of order
+    # If value is key, parse 2nd order keys
+    if typeof value is 'object'
+      html += '<strong>' + key + '</strong><br>'
+      for key, val2 of value
+        # Prevent snippet from rendering in browser...
+        if key is 'snippet' then val2 = '(We don\'t want to render this now...)'
+        # Add indented row
+        html += '&nbsp;&nbsp;' + key + ': ' + val2 + '<br>'
+    else
+      html += key + ': ' + value + '<br>'
+  return html
+
+# On POST from webshop -> place order and return checkout snippet
 app.post '/order', (req, res) ->
-  # 1) Place order and log to console
+
+  # 1) Place order
   console.log "Placing order"
   klarna.place(req.body)
+
+  # 2) If success -> fetch order
   .then(
-    # 2) Fetch order by id
+    # Success
     (id) ->
-      # In a live environment you should wait for a push notification from Klarna before confirming the order
+      # Fetch order by id
       klarna.fetch id
-    (error) ->
-      res.status(500).send error
-  )
-  .then(
-    # 3) Return snippet...
-    (order) ->
-      console.log "Snippet received"
-      res.send order.gui.snippet
-    # ...or error
+    # Error
     (error) ->
       res.status(500).send error
   )
 
-# GET: Confirm order
-app.get '/confirmation', (req, res) ->
-  # On confirmation, get order id and log to console
-  id = req.query.klarna_order_id
-  console.log "Confirming order"
-  # 1) Confirm order with Klarna
-  klarna.confirm id, '1000'
+  # 3) If success -> return snippet
   .then(
-    # 2) Return snippet...
+    # Success
     (order) ->
+      console.log "Snippet received"
+      # Return snippet
+      res.send order.gui.snippet
+    # Error
+    (error) ->
+      res.status(500).send error
+  )
+
+# On GET from Klarna -> confirm order and return confirmation snippet
+app.get '/confirmation', (req, res) ->
+  # Log to console
+  console.log "Confirming order"
+  # Parse id
+  id = req.query.klarna_order_id
+
+  # 1) Confirm order (with merchant order reference)
+  klarna.confirm id, '1000'
+
+  # 2) If success -> return snippet
+  .then(
+    # Success
+    (order) ->
+      # Log to console
       console.log "Order confirmed"
+      # Initialize html string from snippet
       html = order.gui.snippet
       # Add link to snippet html
       html += '<div style="font-family: Helvetica, sans-serif; text-align: center"><a href="/order/' + id + '">View order</a>'
+      # Return html
       res.send html
-    # ...or error
+    # Error
     (error) ->
       res.status(500).send error
   )
@@ -89,23 +120,15 @@ app.get '/confirmation', (req, res) ->
 app.get '/order/:id', (req, res) ->
   # Parse order id
   id = req.params.id
+
   # 1) Fetch order
   klarna.fetch(id)
+  # 2) Return order data
   .then(
-    #) 2 Return order data...
+    # Success
     (order) ->
       # Format HTML output (not very elegant, I know...)
-      html = ''
-      for key, value of order
-        if typeof value is 'object'
-          html += '<strong>' + key + '</strong><br>'
-          for key, val2 of value
-            if key is 'snippet'
-              val2 = '(We don\'t want to render this now...)'
-            html += '&nbsp;&nbsp;' + key + ': ' + val2 + '<br>'
-        else
-          html += key + ': ' + value + '<br>'
-      res.send html
+      res.send order2html order
     # ...or error
     (error) ->
       res.status(500).send error
@@ -114,5 +137,5 @@ app.get '/order/:id', (req, res) ->
 # Run local server on port 3000
 server = app.listen 3000, 'localhost', () ->
   port = server.address().port
-  console.log "Klarna Checkout example server is up and running!"
-  console.log "Open http://localhost:#{port} in browser to try it."
+  console.log "Klarna Checkout example server is up and running!".green
+  console.log "Visit http://localhost:#{port} in a browser to try it.".green

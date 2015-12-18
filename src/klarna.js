@@ -99,14 +99,14 @@
   parseError = function(error, response, body) {
     if (error != null) {
       return {
-        type: 'Request error',
+        type: 'HTTP',
         code: error.code,
         message: error.message
       };
     } else if (body) {
       body = typeof body === 'string' ? JSON.parse(body) : body;
       return {
-        type: 'Klarna error',
+        type: 'Klarna',
         code: body.http_status_code + " - " + body.http_status_message,
         message: body.internal_message
       };

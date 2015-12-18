@@ -91,7 +91,7 @@ parseError = (error, response, body) ->
   # If HTTP request error
   if error?
     return {
-    type: 'Request error'
+    type: 'HTTP'
     code: error.code
     message: error.message
     }
@@ -100,7 +100,7 @@ parseError = (error, response, body) ->
   else if body
     body = if typeof body is 'string' then JSON.parse(body) else body
     return {
-    type: 'Klarna error'
+    type: 'Klarna'
     code: body.http_status_code + " - " + body.http_status_message
     message: body.internal_message
     }
