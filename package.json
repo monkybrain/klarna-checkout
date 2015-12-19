@@ -1,6 +1,6 @@
 {
   "name": "klarna-checkout",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Library for integrating Klarna Checkout in a nodejs environment",
   "main": "src/klarna.js",
   "scripts": {
@@ -19,6 +19,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bokonon82/klarna-checkout.git"
+    "url": "https://github.com/monkybrain/klarna-checkout.git"
   }
 }
