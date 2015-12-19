@@ -8,7 +8,7 @@ Does what is says on the tin...
 ### Run setup script ###
 `npm run-script setup`
 
-Enter the merchant id and shared secret your received from Klarna.
+Enter the merchant id and shared secret you received from Klarna.
 
 ### Start server ###
 `npm start`
