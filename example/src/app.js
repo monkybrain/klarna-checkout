@@ -10,7 +10,7 @@
     fs = require("fs");
   } catch (error1) {
     err = error1;
-    console.log("ERROR! Required modules not installed. Please run 'npm install'\n");
+    console.log("ERROR! Required modules not installed. Please run 'npm install'\n".red);
     return;
   }
 
@@ -50,18 +50,18 @@
   app.use(express["static"]('public'));
 
   order2html = function(order) {
-    var html, key, val2, value;
+    var html, key, value, value2;
     html = '';
     for (key in order) {
       value = order[key];
       if (typeof value === 'object') {
         html += '<strong>' + key + '</strong><br>';
         for (key in value) {
-          val2 = value[key];
+          value2 = value[key];
           if (key === 'snippet') {
-            val2 = '(We don\'t want to render this now...)';
+            value2 = '(We don\'t want to render this now...)';
           }
-          html += '&nbsp;&nbsp;' + key + ': ' + val2 + '<br>';
+          html += '&nbsp;&nbsp;' + key + ': ' + value2 + '<br>';
         }
       } else {
         html += key + ': ' + value + '<br>';

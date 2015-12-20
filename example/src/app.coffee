@@ -6,7 +6,7 @@ try
   colors = require "colors"
   fs = require "fs"
 catch err
-  console.log "ERROR! Required modules not installed. Please run 'npm install'\n"
+  console.log "ERROR! Required modules not installed. Please run 'npm install'\n".red
   return
 
 # Read config.json
@@ -50,12 +50,13 @@ order2html = (order) ->
   for key, value of order
     # If value is key, parse 2nd order keys
     if typeof value is 'object'
+      # Use key as header
       html += '<strong>' + key + '</strong><br>'
-      for key, val2 of value
+      for key, value2 of value
         # Prevent snippet from rendering in browser...
-        if key is 'snippet' then val2 = '(We don\'t want to render this now...)'
+        if key is 'snippet' then value2 = '(We don\'t want to render this now...)'
         # Add indented row
-        html += '&nbsp;&nbsp;' + key + ': ' + val2 + '<br>'
+        html += '&nbsp;&nbsp;' + key + ': ' + value2 + '<br>'
     else
       html += key + ': ' + value + '<br>'
   return html
@@ -63,8 +64,10 @@ order2html = (order) ->
 # On POST from webshop -> place order and return checkout snippet
 app.post '/order', (req, res) ->
 
-  # 1) Place order
+  # Log to console
   console.log "Placing order"
+
+  # 1) Place order
   klarna.place(req.body)
 
   # 2) If success -> fetch order
@@ -92,8 +95,10 @@ app.post '/order', (req, res) ->
 
 # On GET from Klarna -> confirm order and return confirmation snippet
 app.get '/confirmation', (req, res) ->
+
   # Log to console
   console.log "Confirming order"
+
   # Parse id
   id = req.query.klarna_order_id
 
@@ -117,7 +122,9 @@ app.get '/confirmation', (req, res) ->
       res.status(500).send error
   )
 
+# On GET from webshop -> return confirmation snippet
 app.get '/order/:id', (req, res) ->
+
   # Parse order id
   id = req.params.id
 
@@ -127,9 +134,9 @@ app.get '/order/:id', (req, res) ->
   .then(
     # Success
     (order) ->
-      # Format HTML output (not very elegant, I know...)
+      # Format HTML output
       res.send order2html order
-    # ...or error
+    # Error
     (error) ->
       res.status(500).send error
   )
