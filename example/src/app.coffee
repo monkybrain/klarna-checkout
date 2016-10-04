@@ -76,9 +76,6 @@ app.post '/order', (req, res) ->
     (id) ->
       # Fetch order by id
       klarna.fetch id
-    # Error
-    (error) ->
-      res.status(500).send error
   )
 
   # 3) If success -> return snippet
@@ -88,6 +85,10 @@ app.post '/order', (req, res) ->
       console.log "Snippet received"
       # Return snippet
       res.send order.gui.snippet
+  )
+
+  # 4) If error -> return error status
+  .catch(
     # Error
     (error) ->
       res.status(500).send error
