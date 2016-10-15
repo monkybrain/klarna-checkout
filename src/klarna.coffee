@@ -188,6 +188,8 @@ publicMethods =
           if response?
             if response.statusCode is 200
               resolve JSON.parse(body)
+            else
+              reject parseError(error, response, body)
           # Else -> reject with error
           else
             reject parseError(error, response, body)
@@ -205,6 +207,8 @@ publicMethods =
           if response?
             if response.statusCode? and response.statusCode is 200
               resolve body
+            else
+              reject parseError(error, response, body)
           # Else -> reject promise with error
           else
             reject parseError(error, response, body)

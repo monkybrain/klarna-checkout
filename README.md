@@ -1,10 +1,8 @@
-# Klarna Checkout for nodejs #
+# Klarna Checkout for Node.js #
 
-Library for integrating Klarna Checkout in a nodejs environment. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
+Library for using Klarna Checkout with Node.js. Works for merchants in Sweden, Norway, Finland, Austria and Germany.
 
-Written in CoffeeScript for clarity, as are the examples below. JavaScript users, sprinkle semicolons and curly braces accordingly...
-
-Uses promises to handle async operations.
+Uses promises for async operations.
 
 If you find this useful or want to contribute, please send me a line.
 
@@ -15,12 +13,13 @@ If you find this useful or want to contribute, please send me a line.
 
 #### Initialize ####
 ```
-klarna = require 'klarna-checkout'
+klarna = require('klarna-checkout')
 
-klarna.init
+klarna.init({
   eid: <STRING>
   secret: <STRING>
   live: <BOOLEAN>
+})
 ```
 Pass an object containing
 
@@ -35,7 +34,7 @@ Pass an object containing
 
 #### Configure ####
 ```
-klarna.config
+klarna.config({
   purchase_country: <STRING>			
   purchase_currency: <STRING>		
   locale: <STRING>											
@@ -45,7 +44,8 @@ klarna.config
   checkout_uri: <STRING>
   confirmation_uri: <STRING>
   push_uri: <STRING>
-``` 
+})
+```
 
 Pass an object containing
 * purchase_country (string)
@@ -68,7 +68,7 @@ See [API Docs: resource](https://developers.klarna.com/en/se+php/kco-v2/checkout
 
 #### Place order ####
 ```
-klarna.place cart 
+klarna.place(cart)
 ```
 Parameters
 * cart (object)
@@ -81,7 +81,7 @@ Returns promise
 
 #### Fetch order ####
 ```
-klarna.fetch id
+klarna.fetch(id)
 ```
 Parameters
 * id (string): Klarna order id
@@ -92,7 +92,7 @@ Returns promise
 
 #### Confirm order ####
 ```
-klarna.confirm id, orderid1, orderid2
+klarna.confirm(id, orderid1, orderid2)
 ```
 Parameters
   * Required
@@ -107,7 +107,7 @@ Returns promise
 
 #### Update order ####
 ```
-klarna.update id, data
+klarna.update(id, data)
 ```
 Parameters
 * id (string)
@@ -131,11 +131,6 @@ Returns promise
 
 ### Example ###
 There is an example of a minimal Node.js Express server serving Klarna Checkout in [example/](./example/)
-
----
-
-### Used by ###
-Hairtorial ([hairtorial.io](http://hairtorial.io))
 
 ---
 

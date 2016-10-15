@@ -183,6 +183,8 @@ publicMethods = {
           if (response != null) {
             if (response.statusCode === 200) {
               return resolve(JSON.parse(body));
+            } else {
+              return reject(parseError(error, response, body));
             }
           } else {
             return reject(parseError(error, response, body));
@@ -200,6 +202,8 @@ publicMethods = {
           if (response != null) {
             if ((response.statusCode != null) && response.statusCode === 200) {
               return resolve(body);
+            } else {
+              return reject(parseError(error, response, body));
             }
           } else {
             return reject(parseError(error, response, body));
