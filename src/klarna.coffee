@@ -48,7 +48,7 @@ httpRequest =
 
     # Create (digestive) biscuit from payload and hash from biscuit
     biscuit = if payload? then JSON.stringify(payload) + credentials.secret else credentials.secret
-    hash = crypto.createHash('sha256').update(biscuit).digest('base64')
+    hash = crypto.createHash('sha256').update(biscuit, 'utf-8').digest('base64')
 
     # Return headers
     'Accept': klarna.headers.accept
