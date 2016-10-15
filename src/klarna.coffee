@@ -69,17 +69,12 @@ wrapper = (f) ->
 
   # Module initalized?
   if not flags.initalized
-    return () ->
-      new Promise (resolve, reject) ->
-        reject 'Klarna module not initialized. Please use init() method.'
+    throw 'Klarna module not initialized. Please use init() method.'
 
   # All uris set?
-  for key, value of config.uris
+  for key, value of config.merchant
     if not value?
-      return () ->
-        new Promise (resolve, reject) ->
-          reject "'%s' not set", key
-      break
+      throw "Config error: #{key} not set"
 
   # If no problems -> return original function
   return f
@@ -111,8 +106,7 @@ publicMethods =
   init: (input) ->
 
     if not input?
-      console.error "Missing init values"
-      return
+      throw "Missing init values"
 
     # Set merchant ID
     if input.eid?
